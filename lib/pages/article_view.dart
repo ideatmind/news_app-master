@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:news_app/providers/article_provider.dart';
+import 'package:news_app/models/article_model.dart';
 
 class ArticleView extends StatefulWidget {
   final String? blogUrl;
   final String? title;
+  final ArticleModel? article;
   
-  ArticleView({super.key, required this.blogUrl, this.title});
+  ArticleView({super.key, required this.blogUrl, this.title, this.article});
 
   @override
   State<ArticleView> createState() => _ArticleViewState();
@@ -53,6 +57,34 @@ class _ArticleViewState extends State<ArticleView> {
             softWrap: true,
           ),
         ),
+        actions: [
+          if (widget.article != null)
+            Consumer<ArticleProvider>(
+              builder: (context, provider, child) {
+                final isBookmarked = provider.isBookmarked(widget.article!);
+                return IconButton(
+                  icon: Icon(
+                    isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                    color: isBookmarked ? Colors.blue : Colors.grey[600],
+                  ),
+                  onPressed: () async {
+                    await provider.toggleBookmark(widget.article!);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          isBookmarked 
+                            ? 'Removed from bookmarks' 
+                            : 'Added to bookmarks',
+                        ),
+                        duration: Duration(seconds: 2),
+                        backgroundColor: isBookmarked ? Colors.red : Colors.green,
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+        ],
       ),
 
       body: Stack(

@@ -88,7 +88,15 @@ class ShowCategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleView(blogUrl: url)));
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => ArticleView(
+              blogUrl: url,
+              title: title,
+            ),
+          ),
+        );
       },
       child: Container(
         child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/pages/home.dart';
+import 'package:news_app/pages/login_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -44,9 +45,9 @@ class _LandingPageState extends State<LandingPage> {
             const SizedBox(height: 40),
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
               child: Container(
