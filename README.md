@@ -1,16 +1,45 @@
-# news_app
+# News App (Flutter)
 
-A new Flutter project.
+Hey! This is a simple news app made with Flutter. You can read the latest news, search for stuff, and save your favorite articles as bookmarks.
 
-## Getting Started
+## What can you do?
+- See top news stories
+- Search for news
+- Bookmark articles (saved on your phone)
+- Login and signup (basic)
 
-This project is a starting point for a Flutter application.
+## How to run it
+1. Make sure you have **Flutter** installed (3.7.0 or above is fine).
+2. Get a free API key from [newsapi.org](https://newsapi.org) (just sign up there).
+3. Download this project and open it in Android Studio or VS Code.
+4. In `lib/config/app_config.dart`, put your API key instead of the default one.
+5. Open a terminal and run:
+   ```bash
+   flutter pub get
+   flutter run
+   ```
 
-A few resources to get you started if this is your first Flutter project:
+## Folders (what's inside lib/)
+- `models/` - Data stuff (like Article, Bookmark)
+- `pages/` - The screens you see
+- `providers/` - App state (uses Provider)
+- `services/` - API calls and helpers
+- `config/` - App settings
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Some packages used
+- provider
+- http
+- hive
+- cached_network_image
+- webview_flutter
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Problems?
+- If news doesn't load after installing APK, check your internet and make sure you added the right permissions (see AndroidManifest.xml).
+- If bookmarks don't save, try clearing app data or reinstalling.
+- If you get API errors, check your API key.
+
+## Building APK
+To make a release APK:
+```bash
+flutter build apk --release
+```
